@@ -1,0 +1,1731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shreya Sharma — BCA · IIT Madras BS Data Science · Builder</title>
+<meta name="description" content="Portfolio of Shreya Sharma — undergraduate at the intersection of computer applications and data science. Building AI study tools, healthcare systems, and developer assistants from Indora, Himachal Pradesh." />
+
+<!-- Place a square portrait at ./shreya.jpg in the repo root. The hero will fall back to an "SS" monogram if the image is missing. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Toggle dark via class on <html> (Tailwind opt-in). Run before paint.
+  (function () {
+    try {
+      var stored = localStorage.getItem("ss-theme");
+      var prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var dark = stored ? stored === "dark" : prefers;
+      if (dark) document.documentElement.classList.add("dark");
+    } catch (e) {}
+  })();
+  tailwind.config = { darkMode: "class" };
+</script>
+
+<style>
+  :root {
+    /* Light palette */
+    --bg: #FBFAF7;
+    --bg-2: #F5F2EB;
+    --surface: #FFFFFF;
+    --surface-warm: #FFF4E8;
+    --border: #ECE6D8;
+    --rule: #E4DDD0;
+
+    --ink: #1F1B14;
+    --ink-muted: #5E5D52;
+    --ink-faint: #9C9A8F;
+
+    --primary: #1B2845;       /* deep navy */
+    --primary-ink: #1B2845;   /* used for headings in light mode */
+    --coral: #FF7E6B;
+    --mint: #7AB893;
+    --amber: #F5B14B;
+
+    --chip-navy-bg: rgba(27, 40, 69, 0.06);
+    --chip-navy-border: rgba(27, 40, 69, 0.22);
+
+    --shadow-card: 0 1px 0 rgba(28, 24, 12, 0.02), 0 8px 24px -16px rgba(28, 24, 12, 0.10);
+    --shadow-card-hover: 0 1px 0 rgba(28, 24, 12, 0.02), 0 18px 38px -22px rgba(28, 24, 12, 0.18);
+  }
+
+  .dark {
+    /* Warm-dark palette — keeps the editorial feel rather than pure black */
+    --bg: #15140F;
+    --bg-2: #1B1914;
+    --surface: #1F1D17;
+    --surface-warm: #2A241C;
+    --border: #2E2A22;
+    --rule: #2A261E;
+
+    --ink: #EDE8DB;
+    --ink-muted: #A8A498;
+    --ink-faint: #6E6A5E;
+
+    --primary: #C8D4F0;       /* navy doesn't survive dark — soft cool cream */
+    --primary-ink: #EDE8DB;
+    --coral: #FF8E7C;         /* nudged for legibility */
+    --mint: #8FCBA6;
+    --amber: #F6BD66;
+
+    --chip-navy-bg: rgba(200, 212, 240, 0.08);
+    --chip-navy-border: rgba(200, 212, 240, 0.28);
+
+    --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.4), 0 10px 28px -18px rgba(0, 0, 0, 0.55);
+    --shadow-card-hover: 0 1px 0 rgba(0, 0, 0, 0.4), 0 22px 46px -22px rgba(0, 0, 0, 0.7);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .serif { font-family: "Fraunces", "Times New Roman", serif; font-feature-settings: "ss01"; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace; }
+
+  .eyebrow {
+    font-family: "Inter";
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-muted);
+  }
+  .eyebrow--ink { color: var(--primary-ink); }
+
+  .hairline { border-top: 1px solid var(--rule); }
+  .hairline-b { border-bottom: 1px solid var(--rule); }
+
+  .container-narrow { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .reading { max-width: 640px; }
+
+  /* Paper-grain noise — subtle SVG turbulence */
+  .grain::before {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+  }
+  .dark .grain::before { mix-blend-mode: screen; opacity: 0.04; }
+
+  /* Chips */
+  .chip {
+    display: inline-flex; align-items: center;
+    font-family: "JetBrains Mono"; font-size: 11.5px;
+    padding: 4px 9px; border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    color: var(--ink-muted);
+    line-height: 1.2; letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .chip--navy { background: var(--chip-navy-bg); border-color: var(--chip-navy-border); color: var(--primary-ink); }
+  .chip--coral { background: rgba(255, 126, 107, 0.10); border-color: rgba(255, 126, 107, 0.35); color: var(--coral); }
+  .chip--mint  { background: rgba(122, 184, 147, 0.12); border-color: rgba(122, 184, 147, 0.42); color: #4f8e6a; }
+  .dark .chip--mint  { color: var(--mint); }
+  .chip--amber { background: rgba(245, 177, 75, 0.14); border-color: rgba(245, 177, 75, 0.40); color: #b67d1b; }
+  .dark .chip--amber { color: var(--amber); }
+
+  .pill-current {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(122, 184, 147, 0.15);
+    color: #4f8e6a;
+    border: 1px solid rgba(122, 184, 147, 0.4);
+    font-family: "JetBrains Mono"; font-size: 10.5px;
+    padding: 3px 9px; border-radius: 999px;
+    letter-spacing: 0.08em;
+  }
+  .dark .pill-current { color: var(--mint); }
+  .pill-current::before {
+    content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--mint);
+    box-shadow: 0 0 0 0 rgba(122, 184, 147, 0.6);
+    animation: softpulse 2.2s ease-out infinite;
+  }
+  @keyframes softpulse {
+    0%   { box-shadow: 0 0 0 0 rgba(122, 184, 147, 0.55); }
+    70%  { box-shadow: 0 0 0 8px rgba(122, 184, 147, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(122, 184, 147, 0); }
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 18px; border-radius: 999px;
+    font-weight: 500; font-size: 14.5px;
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease, border-color 200ms ease;
+    border: 1px solid transparent;
+    cursor: pointer; user-select: none;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--bg);
+  }
+  .dark .btn-primary { color: #15140F; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 22px -14px rgba(27,40,69,0.45); }
+  .btn-ghost-coral {
+    background: transparent; color: var(--coral);
+    border-color: rgba(255, 126, 107, 0.45);
+  }
+  .btn-ghost-coral:hover {
+    background: rgba(255, 126, 107, 0.08);
+    box-shadow: 0 0 0 3px rgba(255, 126, 107, 0.12), 0 0 22px -4px rgba(255, 126, 107, 0.45);
+    transform: translateY(-1px);
+  }
+  .btn-coral {
+    background: var(--coral); color: #fff; border-color: transparent;
+  }
+  .btn-coral:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 3px rgba(255, 126, 107, 0.18), 0 16px 26px -16px rgba(255, 126, 107, 0.7);
+  }
+
+  /* Nav */
+  .nav-link {
+    font-size: 14px; color: var(--ink-muted);
+    position: relative; padding: 6px 2px;
+    transition: color 180ms ease;
+  }
+  .nav-link:hover { color: var(--ink); }
+  .nav-link.active { color: var(--primary-ink); }
+  .nav-link.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px;
+    background: var(--coral);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-card);
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+  .accent-strip { height: 4px; width: 100%; }
+
+  /* Pull quote */
+  .pullquote {
+    font-family: "Fraunces"; font-style: italic;
+    color: var(--coral); font-size: 22px; line-height: 1.5;
+    position: relative; padding-left: 26px;
+  }
+  .pullquote::before {
+    content: "\201C"; position: absolute; left: 0; top: -10px;
+    font-size: 56px; line-height: 1; color: var(--coral); opacity: 0.55;
+    font-family: "Fraunces";
+  }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px;
+    width: 1px; background: linear-gradient(180deg, var(--coral) 0%, rgba(255,126,107,0.25) 100%);
+  }
+  .timeline-node { position: relative; }
+  .timeline-node::before {
+    content: ""; position: absolute; left: -30px; top: 7px;
+    width: 13px; height: 13px; border-radius: 999px;
+    background: var(--bg);
+    border: 2px solid var(--coral);
+  }
+
+  /* Scroll-fade */
+  .fade-up { opacity: 0; transform: translateY(14px); transition: opacity 450ms ease-out, transform 450ms ease-out; }
+  .fade-up.in { opacity: 1; transform: none; }
+
+  /* Toast */
+  .toast {
+    position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(40px);
+    background: rgba(122, 184, 147, 0.18);
+    border: 1px solid rgba(122, 184, 147, 0.5);
+    color: #2f6c4a;
+    padding: 12px 18px; border-radius: 999px;
+    font-size: 14px; font-weight: 500;
+    box-shadow: 0 12px 28px -16px rgba(28, 24, 12, 0.2);
+    opacity: 0; transition: opacity 220ms ease, transform 220ms ease;
+    z-index: 80; pointer-events: none;
+  }
+  .dark .toast { color: #c9eed6; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Form */
+  .field {
+    width: 100%; background: var(--surface); color: var(--ink);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; font-size: 14.5px;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+  .field::placeholder { color: var(--ink-faint); }
+  .field:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255, 126, 107, 0.18); }
+  textarea.field { resize: vertical; min-height: 120px; }
+
+  /* Icon stroke uses currentColor */
+  .icon { width: 18px; height: 18px; stroke-width: 1.6; }
+
+  /* Mobile menu */
+  .mobile-menu { transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 180ms ease, transform 180ms ease; }
+  .mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+
+  /* Section spacing */
+  section { padding-top: 96px; padding-bottom: 96px; position: relative; }
+  @media (max-width: 768px) {
+    section { padding-top: 64px; padding-bottom: 64px; }
+  }
+
+  /* Theme toggle */
+  .theme-toggle {
+    width: 36px; height: 36px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink-muted); transition: color 180ms ease, transform 200ms ease, background 180ms ease;
+  }
+  .theme-toggle:hover { color: var(--coral); transform: rotate(-12deg); }
+  .theme-toggle .sun { display: none; }
+  .theme-toggle .moon { display: block; }
+  .dark .theme-toggle .sun { display: block; }
+  .dark .theme-toggle .moon { display: none; }
+
+  /* Selection */
+  ::selection { background: rgba(255, 126, 107, 0.25); color: var(--ink); }
+
+  /* ===== Reading progress ===== */
+  #read-progress {
+    position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+    background: linear-gradient(90deg, var(--coral), var(--amber));
+    z-index: 100; pointer-events: none;
+    transition: width 80ms linear;
+  }
+
+  /* ===== Numbered section chapters ===== */
+  .chapter {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px;
+  }
+  .chapter-num {
+    font-family: "JetBrains Mono"; font-size: 11px; letter-spacing: 0.14em;
+    color: var(--coral); font-weight: 500;
+  }
+  .chapter-rule {
+    flex: 0 0 48px; height: 1px; background: var(--rule);
+  }
+  .chapter-label {
+    font-family: "Inter"; text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 11px; font-weight: 500; color: var(--ink-muted);
+  }
+
+  /* ===== Status pill (hero) ===== */
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px 6px 10px; border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-family: "Inter"; font-size: 12.5px; color: var(--ink-muted);
+    letter-spacing: 0.005em;
+  }
+  .status-pill::before {
+    content: ""; width: 7px; height: 7px; border-radius: 999px;
+    background: var(--mint); flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(122, 184, 147, 0.55);
+    animation: softpulse 2.2s ease-out infinite;
+  }
+  .status-pill strong { color: var(--ink); font-weight: 500; }
+
+  /* ===== Credential mini-table ===== */
+  .cred-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+    max-width: 560px;
+  }
+  @media (min-width: 640px) { .cred-table { grid-template-columns: 1fr 1fr; gap: 14px 32px; } }
+  .cred-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .cred-label {
+    font-family: "JetBrains Mono"; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--ink-faint);
+  }
+  .cred-value {
+    font-family: "Fraunces"; font-size: 15.5px; color: var(--ink);
+    text-align: right;
+  }
+  .cred-value strong { color: var(--primary-ink); font-weight: 500; }
+
+  /* ===== Stats strip ===== */
+  .stats-strip {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (min-width: 768px) { .stats-strip { grid-template-columns: repeat(4, 1fr); } }
+  .stat-cell {
+    padding: 28px 24px;
+    border-right: 1px solid var(--rule);
+    position: relative;
+  }
+  .stat-cell:nth-child(2n) { border-right: none; }
+  @media (min-width: 768px) {
+    .stat-cell:nth-child(2n) { border-right: 1px solid var(--rule); }
+    .stat-cell:last-child { border-right: none; }
+  }
+  .stat-cell:nth-child(1), .stat-cell:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  @media (min-width: 768px) {
+    .stat-cell:nth-child(1), .stat-cell:nth-child(2) { border-bottom: none; }
+  }
+  .stat-num {
+    font-family: "Fraunces"; font-weight: 500;
+    font-size: clamp(36px, 4.6vw, 52px); line-height: 1;
+    color: var(--primary-ink); letter-spacing: -0.01em;
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .stat-num sup {
+    font-size: 0.4em; color: var(--coral); font-feature-settings: normal;
+    font-weight: 500; letter-spacing: 0;
+  }
+  .stat-label {
+    font-family: "Inter"; font-size: 11.5px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--ink-muted); margin-top: 10px;
+    font-weight: 500;
+  }
+  .stat-sub {
+    font-family: "Fraunces"; font-style: italic; color: var(--ink-faint);
+    font-size: 13px; margin-top: 4px;
+  }
+
+  /* ===== Project filters ===== */
+  .filter-bar {
+    display: inline-flex; padding: 4px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; gap: 2px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: "Inter"; font-size: 13px; font-weight: 500;
+    color: var(--ink-muted);
+    padding: 8px 16px; border-radius: 999px;
+    transition: color 180ms ease, background 180ms ease;
+    cursor: pointer; white-space: nowrap;
+  }
+  .filter-btn:hover { color: var(--ink); }
+  .filter-btn.active {
+    background: var(--primary); color: var(--bg);
+  }
+  .dark .filter-btn.active { color: #15140F; }
+  .filter-count {
+    font-family: "JetBrains Mono"; font-size: 11px;
+    opacity: 0.75; margin-left: 6px;
+  }
+
+  .project-card[data-hidden="true"] {
+    display: none;
+  }
+
+  /* ===== Project visual panel ===== */
+  .pvisual {
+    position: relative;
+    height: 168px;
+    border-bottom: 1px solid var(--rule);
+    background:
+      radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--ink) 8%, transparent) 1px, transparent 0) 0 0 / 18px 18px,
+      linear-gradient(180deg, var(--surface-warm) 0%, var(--surface) 100%);
+    overflow: hidden;
+  }
+  .dark .pvisual {
+    background:
+      radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--ink) 6%, transparent) 1px, transparent 0) 0 0 / 18px 18px,
+      linear-gradient(180deg, var(--surface-warm) 0%, var(--surface) 100%);
+  }
+  .pvisual-meta {
+    position: absolute; top: 14px; left: 0; right: 0;
+    display: flex; justify-content: space-between;
+    padding: 0 20px;
+    font-family: "JetBrains Mono"; font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    pointer-events: none; z-index: 2;
+  }
+  .pvisual-num { color: var(--ink-faint); }
+  .pvisual-cat {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--ink-muted);
+  }
+  .pvisual-cat::before {
+    content: ""; width: 5px; height: 5px; border-radius: 999px;
+    background: currentColor;
+  }
+  .pvisual-art {
+    position: absolute; inset: 28px 24px 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pvisual-art svg {
+    width: 100%; height: 100%; max-height: 120px;
+  }
+  .pcard-coral .pvisual-cat { color: var(--coral); }
+  .pcard-mint  .pvisual-cat { color: #4f8e6a; }
+  .dark .pcard-mint  .pvisual-cat { color: var(--mint); }
+  .pcard-amber .pvisual-cat { color: #b67d1b; }
+  .dark .pcard-amber .pvisual-cat { color: var(--amber); }
+  .pcard-navy  .pvisual-cat { color: var(--primary-ink); }
+
+  /* ===== Hero contour ornament ===== */
+  .hero-contour {
+    position: absolute; right: -40px; top: 40px;
+    width: 520px; max-width: 60%; height: 460px;
+    pointer-events: none; opacity: 0.45;
+    z-index: 0;
+  }
+  .dark .hero-contour { opacity: 0.18; }
+  .hero-contour svg { width: 100%; height: 100%; display: block; }
+  #top { position: relative; overflow: hidden; }
+  #top > .container-narrow { position: relative; z-index: 1; }
+
+  /* ===== Stat icons ===== */
+  .stat-icon {
+    color: var(--coral); margin-bottom: 14px;
+    display: inline-flex; opacity: 0.85;
+  }
+
+  /* ===== Skills proficiency dots ===== */
+  .skill-label-row {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .skill-dots {
+    display: inline-flex; gap: 4px; margin-top: 4px;
+  }
+  .skill-dots span {
+    width: 7px; height: 7px; border-radius: 999px;
+    background: var(--rule);
+  }
+  .skill-dots span.on { background: var(--coral); }
+
+  /* ===== Section ornament divider ===== */
+  .ornament {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; padding: 14px 0;
+    color: var(--ink-faint);
+  }
+  .ornament-line {
+    flex: 1; max-width: 80px; height: 1px; background: var(--rule);
+  }
+  .ornament-mark {
+    width: 18px; height: 18px; opacity: 0.7;
+  }
+
+  /* ===== Command Palette ===== */
+  #cmdk-overlay {
+    position: fixed; inset: 0; z-index: 90;
+    background: rgba(15, 14, 10, 0.45);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: flex-start; justify-content: center;
+    padding-top: 12vh;
+  }
+  #cmdk-overlay.open { display: flex; }
+  #cmdk {
+    width: min(560px, calc(100vw - 32px));
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 32px 80px -20px rgba(0,0,0,0.35);
+    animation: cmdkin 180ms ease-out;
+  }
+  @keyframes cmdkin {
+    from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
+  }
+  #cmdk-input {
+    width: 100%; background: transparent; border: 0;
+    padding: 18px 22px; font-family: "Inter"; font-size: 15px;
+    color: var(--ink); outline: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  #cmdk-input::placeholder { color: var(--ink-faint); }
+  #cmdk-list {
+    max-height: 340px; overflow-y: auto;
+    padding: 8px;
+  }
+  .cmdk-group-title {
+    font-family: "JetBrains Mono"; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--ink-faint); padding: 10px 14px 6px;
+  }
+  .cmdk-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border-radius: 10px;
+    cursor: pointer; color: var(--ink);
+    font-size: 14px;
+  }
+  .cmdk-item .cmdk-icon { color: var(--ink-faint); flex-shrink: 0; }
+  .cmdk-item.active { background: var(--surface-warm); color: var(--primary-ink); }
+  .cmdk-item.active .cmdk-icon { color: var(--coral); }
+  .cmdk-shortcut {
+    margin-left: auto;
+    font-family: "JetBrains Mono"; font-size: 10.5px;
+    color: var(--ink-faint); letter-spacing: 0.04em;
+  }
+  #cmdk-footer {
+    padding: 8px 14px; border-top: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 16px;
+    font-family: "JetBrains Mono"; font-size: 10.5px;
+    color: var(--ink-faint); letter-spacing: 0.04em;
+  }
+  .kbd {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; height: 18px;
+    padding: 0 5px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-family: "JetBrains Mono"; font-size: 10px;
+    background: var(--bg-2); color: var(--ink-muted);
+  }
+
+  /* ===== Footer status ===== */
+  .footer-cta {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  /* ===== Cmd+K nav hint ===== */
+  .cmdk-hint {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 9px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface);
+    font-family: "JetBrains Mono"; font-size: 11px;
+    color: var(--ink-muted); letter-spacing: 0.03em;
+    transition: color 180ms ease, border-color 180ms ease;
+    cursor: pointer;
+  }
+  .cmdk-hint:hover { color: var(--coral); border-color: rgba(255,126,107,0.4); }
+
+  /* Print */
+  @media print {
+    .no-print, nav, footer, .toast, #mobile-menu, .theme-toggle, #back-to-top { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    section { padding: 24px 0 !important; page-break-inside: avoid; }
+    .project-card, .card { box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; }
+    .accent-strip { display: none; }
+    .grain::before { display: none; }
+    a { color: #000 !important; text-decoration: underline; }
+    .chip { border: 1px solid #999 !important; color: #000 !important; background: transparent !important; }
+    .hero-grid { display: block !important; }
+    .pullquote { color: #000 !important; }
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<div id="read-progress"></div>
+
+<!-- ================= NAV ================= -->
+<nav class="sticky top-0 z-50 backdrop-blur-md no-print"
+     style="background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--rule);">
+  <div class="container-narrow flex items-center justify-between h-[64px]">
+    <a href="#top" class="flex items-center gap-2 serif text-[19px]" style="color: var(--primary-ink); font-weight: 500;">
+      <span class="inline-block w-[7px] h-[7px] rounded-full" style="background: var(--coral);"></span>
+      Shreya Sharma
+    </a>
+
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#about" class="nav-link" data-nav="about">About</a>
+      <a href="#education" class="nav-link" data-nav="education">Education</a>
+      <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
+      <a href="#projects" class="nav-link" data-nav="projects">Projects</a>
+      <a href="#highlights" class="nav-link" data-nav="highlights">Highlights</a>
+      <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="cmdk-trigger" class="cmdk-hint hidden md:inline-flex" aria-label="Open command palette">
+        <span class="kbd" id="cmdk-key">⌘</span><span class="kbd">K</span>
+      </button>
+
+      <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle">
+        <!-- moon (shown in light mode) -->
+        <svg class="icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <!-- sun (shown in dark mode) -->
+        <svg class="icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+
+      <a href="./Shreya_Sharma_CV.pdf" class="hidden sm:inline-flex items-center gap-1.5 mono"
+         style="font-size: 12px; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--primary-ink);">
+         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/></svg>
+         Résumé
+      </a>
+
+      <button id="hamburger" class="md:hidden theme-toggle" aria-label="Open menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu md:hidden absolute left-0 right-0 top-[64px] mx-4 mt-2 rounded-xl"
+       style="background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-card-hover);">
+    <div class="flex flex-col p-2">
+      <a class="px-4 py-3 rounded-lg" href="#about" data-mobile>About</a>
+      <a class="px-4 py-3 rounded-lg" href="#education" data-mobile>Education</a>
+      <a class="px-4 py-3 rounded-lg" href="#skills" data-mobile>Skills</a>
+      <a class="px-4 py-3 rounded-lg" href="#projects" data-mobile>Projects</a>
+      <a class="px-4 py-3 rounded-lg" href="#highlights" data-mobile>Highlights</a>
+      <a class="px-4 py-3 rounded-lg" href="#contact" data-mobile>Contact</a>
+      <a class="px-4 py-3 rounded-lg mono" href="./Shreya_Sharma_CV.pdf" style="color: var(--coral);">Résumé</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section id="top" class="grain" style="padding-top: 88px; padding-bottom: 96px;">
+  <!-- Topographic contour ornament — nods to Himachal landscape -->
+  <div class="hero-contour" aria-hidden="true">
+    <svg viewBox="0 0 520 460" fill="none" stroke="currentColor" stroke-width="1" style="color: var(--coral);">
+      <g opacity="0.55">
+        <path d="M-20 380 C 80 340, 160 360, 260 320 S 460 280, 540 300"/>
+        <path d="M-20 340 C 80 300, 160 320, 260 280 S 460 240, 540 260"/>
+        <path d="M-20 300 C 80 260, 160 280, 260 240 S 460 200, 540 220"/>
+        <path d="M-20 260 C 80 220, 160 240, 260 200 S 460 160, 540 180"/>
+      </g>
+      <g opacity="0.85" stroke="currentColor">
+        <path d="M-20 220 C 80 180, 160 200, 260 160 S 460 120, 540 140"/>
+        <path d="M-20 180 C 80 140, 160 160, 260 120 S 460 80, 540 100"/>
+      </g>
+      <g opacity="0.4" stroke="currentColor" stroke-dasharray="2 4">
+        <path d="M-20 140 C 80 100, 160 120, 260 80 S 460 40, 540 60"/>
+        <path d="M-20 100 C 80 60, 160 80, 260 40 S 460 0, 540 20"/>
+      </g>
+      <!-- Compass mark -->
+      <g transform="translate(440,80)" stroke="currentColor" opacity="0.7">
+        <circle r="18" fill="none"/>
+        <path d="M0 -14 L4 0 L0 14 L-4 0 Z" fill="currentColor" stroke="none" opacity="0.8"/>
+        <text x="0" y="-22" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="currentColor" stroke="none" letter-spacing="1">N</text>
+      </g>
+      <!-- Coordinate marker -->
+      <g transform="translate(40,420)" font-family="JetBrains Mono" font-size="9" fill="currentColor" stroke="none" opacity="0.65">
+        <text x="0" y="0" letter-spacing="0.8">32.0°N · 75.9°E</text>
+        <text x="0" y="12" letter-spacing="0.8" opacity="0.7">INDORA · HP · IN</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="container-narrow">
+    <div class="hero-grid grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-14 items-center">
+      <!-- Left: text (60%) -->
+      <div class="md:col-span-3 fade-up">
+        <div class="status-pill mb-6">
+          <span><strong>Available</strong> for internships · Summer 2026</span>
+        </div>
+
+        <h1 class="serif" style="font-weight: 500; font-size: clamp(52px, 8vw, 88px); line-height: 1.02; letter-spacing: -0.01em; color: var(--primary-ink); margin-bottom: 22px;">
+          Shreya Sharma
+        </h1>
+
+        <p class="serif" style="font-style: italic; font-size: clamp(18px, 2.2vw, 22px); color: var(--ink-muted); max-width: 560px; line-height: 1.45; margin-bottom: 28px;">
+          Undergraduate at the intersection of computer applications and data science — building AI study tools, healthcare systems, and developer assistants from Indora, Himachal Pradesh.
+        </p>
+
+        <!-- Credential mini-table -->
+        <div class="cred-table mb-8">
+          <div class="cred-row">
+            <span class="cred-label">BCA · HPU</span>
+            <span class="cred-value"><strong>8.24</strong> / 10</span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">BS DS · IITM</span>
+            <span class="cred-value"><strong>7.54</strong> / 10</span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Projects shipped</span>
+            <span class="cred-value"><strong>3</strong></span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Based in</span>
+            <span class="cred-value">Indora, HP</span>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3 mb-7">
+          <a href="#projects" class="btn btn-primary">
+            See my projects
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost-coral">Get in touch</a>
+        </div>
+
+        <!-- Socials -->
+        <div class="flex items-center gap-5" style="color: var(--ink-faint);">
+          <a href="https://www.linkedin.com/" aria-label="LinkedIn" class="hover:text-[color:var(--coral)] transition-colors">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:shreyapws@gmail.com" aria-label="Email" class="hover:text-[color:var(--coral)] transition-colors">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="https://github.com/" aria-label="GitHub" class="hover:text-[color:var(--coral)] transition-colors">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#contact" aria-label="Location" class="hover:text-[color:var(--coral)] transition-colors">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: portrait (40%) -->
+      <div class="md:col-span-2 fade-up">
+        <div class="relative mx-auto" style="max-width: 360px;">
+          <div class="aspect-square rounded-[16px] overflow-hidden"
+               style="border: 1px solid var(--border); background: var(--surface-warm); box-shadow: 0 20px 50px -28px rgba(28,24,12,0.35);">
+            <!-- Place ./shreya.jpg in repo root. The fallback monogram renders if it's missing. -->
+            <img id="hero-photo" src="./shreya.jpg" alt="Portrait of Shreya Sharma"
+                 class="w-full h-full object-cover"
+                 onerror="this.style.display='none'; document.getElementById('hero-fallback').style.display='flex';" />
+            <div id="hero-fallback" class="w-full h-full items-center justify-center" style="display:none; background: var(--primary); color: var(--surface);">
+              <span class="serif" style="font-size: 96px; font-weight: 500; letter-spacing: 0.02em;">SS</span>
+            </div>
+          </div>
+          <p class="serif text-center mt-4" style="font-style: italic; color: var(--ink-muted); font-size: 14px;">
+            Indora, Kangra · Himachal Pradesh, India
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS STRIP ================= -->
+<div class="container-narrow">
+  <div class="stats-strip fade-up">
+    <div class="stat-cell">
+      <div class="stat-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v16H4zM13 4h7v16h-7z"/><path d="M7 9h1M7 13h1M16 9h1M16 13h1"/></svg>
+      </div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Projects shipped</div>
+      <div class="stat-sub">AI · Civic Tech · Finance</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+      </div>
+      <div class="stat-num">2</div>
+      <div class="stat-label">Degrees in parallel</div>
+      <div class="stat-sub">BCA &amp; BS Data Science</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l6-6 4 4 8-9"/><path d="M14 7h7v7"/></svg>
+      </div>
+      <div class="stat-num">8.24</div>
+      <div class="stat-label">Current CGPA</div>
+      <div class="stat-sub">BCA · HP University</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg>
+      </div>
+      <div class="stat-num">2025</div>
+      <div class="stat-label">IITM qualifier · cleared</div>
+      <div class="stat-sub">Foundation level · enrolled</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container-narrow">
+    <div class="reading mx-auto fade-up">
+      <div class="chapter"><span class="chapter-num">§ 01</span><span class="chapter-rule"></span><span class="chapter-label">About</span></div>
+      <h2 class="serif" style="font-weight: 500; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.12; letter-spacing: -0.005em; color: var(--primary-ink); margin-bottom: 28px;">
+        Building things while learning the fundamentals.
+      </h2>
+
+      <p style="font-size: 17px; color: var(--ink); margin-bottom: 20px;">
+        I'm an undergraduate pursuing two programs at once — a Bachelor of Computer Applications at Minerva College (Himachal Pradesh University) and an online BS in Data Science and Applications from IIT Madras. The dual track keeps me grounded in core computer science fundamentals while pushing me into the deeper waters of statistics, machine learning, and applied data science.
+      </p>
+      <p style="font-size: 17px; color: var(--ink); margin-bottom: 32px;">
+        Outside of coursework, I build. Three projects so far — spanning an AI-powered peer-review tool for research papers, a civic accountability platform for small-town India, and a personal finance app built for how Indian students actually spend money. The common thread: solving real problems for the people I know. I learn faster when the project is real.
+      </p>
+
+      <blockquote class="pullquote">
+        I'd rather ship a half-built version of something useful than perfect a tutorial.
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<div class="container-narrow hairline-b"></div>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education">
+  <div class="container-narrow">
+    <div class="fade-up mb-12">
+      <div class="chapter"><span class="chapter-num">§ 02</span><span class="chapter-rule"></span><span class="chapter-label">Education</span></div>
+      <h2 class="serif" style="font-weight: 500; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.12; letter-spacing: -0.005em; color: var(--primary-ink);">
+        Currently studying.
+      </h2>
+    </div>
+
+    <div class="timeline max-w-3xl">
+      <div class="timeline-node fade-up mb-10">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+          <span class="mono" style="font-size: 12px; letter-spacing: 0.04em; color: var(--ink-muted); text-transform: uppercase;">2025 — Present</span>
+          <span class="pill-current">Current</span>
+        </div>
+        <h3 class="serif" style="font-size: 22px; font-weight: 500; color: var(--primary-ink);">Bachelor of Computer Applications (BCA)</h3>
+        <div style="font-weight: 500; color: var(--ink); margin-top: 2px;">Minerva College of Education, Kangra <span style="color: var(--ink-muted); font-weight: 400;">— Himachal Pradesh University</span></div>
+        <p style="color: var(--ink-muted); margin-top: 6px; max-width: 560px;">
+          Foundation in C programming, mathematics, and computer fundamentals.
+        </p>
+        <div class="mono mt-2" style="font-size: 12.5px; color: var(--ink-muted);">
+          Current CGPA: <span style="color: var(--primary-ink); font-weight: 500;">8.24</span>
+        </div>
+      </div>
+
+      <div class="timeline-node fade-up mb-10">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+          <span class="mono" style="font-size: 12px; letter-spacing: 0.04em; color: var(--ink-muted); text-transform: uppercase;">2025 — Present</span>
+          <span class="pill-current">Current</span>
+        </div>
+        <h3 class="serif" style="font-size: 22px; font-weight: 500; color: var(--primary-ink);">BS in Data Science and Applications</h3>
+        <div style="font-weight: 500; color: var(--ink); margin-top: 2px;">IIT Madras <span style="color: var(--ink-muted); font-weight: 400;">— Online Program · Foundation Level</span></div>
+        <p style="color: var(--ink-muted); margin-top: 6px; max-width: 580px;">
+          Pursuing the foundational level: statistics for data science, computational thinking, English for technical communication, mathematics for data science, Python programming.
+        </p>
+        <div class="mono mt-2" style="font-size: 12.5px; color: var(--ink-muted);">
+          Current CGPA: <span style="color: var(--primary-ink); font-weight: 500;">7.54</span>
+        </div>
+      </div>
+
+      <div class="timeline-node fade-up mb-10">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+          <span class="mono" style="font-size: 12px; letter-spacing: 0.04em; color: var(--ink-muted); text-transform: uppercase;">2025</span>
+        </div>
+        <h3 class="serif" style="font-size: 22px; font-weight: 500; color: var(--primary-ink);">Class XII (CBSE)</h3>
+        <div style="font-weight: 500; color: var(--ink); margin-top: 2px;">Partap World School, Kangra</div>
+        <p style="color: var(--ink-muted); margin-top: 6px;">Physics · Chemistry · Mathematics · Information Technology</p>
+      </div>
+
+      <div class="timeline-node fade-up">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+          <span class="mono" style="font-size: 12px; letter-spacing: 0.04em; color: var(--ink-muted); text-transform: uppercase;">2023</span>
+        </div>
+        <h3 class="serif" style="font-size: 22px; font-weight: 500; color: var(--primary-ink);">Class X (CBSE)</h3>
+        <div style="font-weight: 500; color: var(--ink); margin-top: 2px;">Partap World School, Kangra</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-narrow hairline-b"></div>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="container-narrow">
+    <div class="fade-up mb-12">
+      <div class="chapter"><span class="chapter-num">§ 03</span><span class="chapter-rule"></span><span class="chapter-label">Skills</span></div>
+      <h2 class="serif" style="font-weight: 500; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.12; letter-spacing: -0.005em; color: var(--primary-ink);">
+        What I'm working with.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-x-12 gap-y-8">
+      <!-- Row 1 -->
+      <div class="fade-up">
+        <div class="serif" style="font-size: 20px; color: var(--primary-ink); font-weight: 500;">Programming Languages</div>
+        <div class="skill-dots mt-2"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+      </div>
+      <div class="fade-up flex flex-wrap gap-2 hairline-b" style="padding-bottom: 24px;">
+        <span class="chip chip--navy">Python</span>
+        <span class="chip chip--navy">C</span>
+        <span class="chip chip--mint">JavaScript · learning</span>
+        <span class="chip chip--navy">HTML</span>
+        <span class="chip chip--navy">CSS</span>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="fade-up">
+        <div class="serif" style="font-size: 20px; color: var(--primary-ink); font-weight: 500;">Data Science &amp; ML</div>
+        <div class="skill-dots mt-2"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+      </div>
+      <div class="fade-up flex flex-wrap gap-2 hairline-b" style="padding-bottom: 24px;">
+        <span class="chip chip--navy">NumPy</span>
+        <span class="chip chip--navy">Pandas</span>
+        <span class="chip chip--navy">Matplotlib</span>
+        <span class="chip chip--amber">Scikit-learn · intro</span>
+        <span class="chip chip--navy">Jupyter Notebooks</span>
+        <span class="chip chip--navy">Statistics for DS</span>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="fade-up">
+        <div class="serif" style="font-size: 20px; color: var(--primary-ink); font-weight: 500;">Web &amp; Frontend</div>
+        <div class="skill-dots mt-2"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+      </div>
+      <div class="fade-up flex flex-wrap gap-2 hairline-b" style="padding-bottom: 24px;">
+        <span class="chip chip--navy">HTML5</span>
+        <span class="chip chip--navy">CSS3</span>
+        <span class="chip chip--navy">JavaScript (vanilla)</span>
+        <span class="chip chip--navy">Tailwind CSS</span>
+        <span class="chip chip--mint">React · learning</span>
+        <span class="chip chip--navy">Git / GitHub</span>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="fade-up">
+        <div class="serif" style="font-size: 20px; color: var(--primary-ink); font-weight: 500;">Tools &amp; Workflows</div>
+        <div class="skill-dots mt-2"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+      </div>
+      <div class="fade-up flex flex-wrap gap-2 hairline-b" style="padding-bottom: 24px;">
+        <span class="chip chip--navy">VS Code</span>
+        <span class="chip chip--navy">Google Colab</span>
+        <span class="chip chip--navy">MS Office</span>
+        <span class="chip chip--navy">Markdown</span>
+        <span class="chip chip--amber">Figma · basics</span>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="fade-up">
+        <div class="serif" style="font-size: 20px; color: var(--primary-ink); font-weight: 500;">Languages (spoken)</div>
+        <div class="skill-dots mt-2"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+      </div>
+      <div class="fade-up flex flex-wrap gap-2">
+        <span class="chip chip--navy">English</span>
+        <span class="chip chip--navy">हिन्दी · Hindi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-narrow hairline-b"></div>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="container-narrow">
+    <div class="fade-up mb-3">
+      <div class="chapter"><span class="chapter-num">§ 04</span><span class="chapter-rule"></span><span class="chapter-label">Selected work</span></div>
+      <h2 class="serif" style="font-weight: 500; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.12; letter-spacing: -0.005em; color: var(--primary-ink);">
+        Three projects. Three problems worth solving.
+      </h2>
+    </div>
+    <p class="fade-up mb-8" style="color: var(--ink-muted); font-size: 17px; max-width: 660px;">
+      Each project below is built or being built end-to-end — from the problem framing to the working demo.
+    </p>
+
+    <!-- Filter bar -->
+    <div class="fade-up mb-12">
+      <div class="filter-bar" role="tablist" aria-label="Project category filter">
+        <button class="filter-btn active" data-filter="all">All<span class="filter-count">3</span></button>
+        <button class="filter-btn" data-filter="ai">AI / Research<span class="filter-count">1</span></button>
+        <button class="filter-btn" data-filter="civic">Civic Tech<span class="filter-count">1</span></button>
+        <button class="filter-btn" data-filter="finance">Finance<span class="filter-count">1</span></button>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-10 max-w-4xl" id="project-list">
+
+      <!-- ========== Project 01: Reviewer's Desk ========== -->
+      <article class="project-card fade-up pcard-coral" data-category="ai">
+        <div class="pvisual">
+          <div class="pvisual-meta">
+            <span class="pvisual-num">01 / 03</span>
+            <span class="pvisual-cat">AI · Research</span>
+          </div>
+          <div class="pvisual-art">
+            <!-- Reviewer's Desk: paper with annotated sections, figure box, reviewer marks -->
+            <svg viewBox="0 0 720 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-muted);">
+              <!-- Paper -->
+              <g transform="translate(160,8)">
+                <rect x="0" y="0" width="260" height="104" rx="3" stroke="currentColor" fill="var(--surface)"/>
+                <text x="10" y="16" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">§ 1  ABSTRACT</text>
+                <path d="M10 22h160M10 28h180M10 34h140" stroke="currentColor" opacity="0.4"/>
+                <text x="10" y="48" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">§ 2  METHOD</text>
+                <path d="M10 54h190M10 60h165" stroke="currentColor" opacity="0.4"/>
+                <!-- Figure box -->
+                <rect x="180" y="66" width="72" height="30" rx="2" stroke="var(--coral)" fill="none"/>
+                <path d="M186 80l8-8 8 6 10-10 12 14" stroke="var(--coral)" opacity="0.85"/>
+                <text x="180" y="103" font-family="JetBrains Mono" font-size="6" fill="var(--coral)" stroke="none">Fig. 4</text>
+                <text x="10" y="72" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">§ 3</text>
+                <path d="M10 78h150M10 84h130M10 90h160M10 96h120" stroke="currentColor" opacity="0.4"/>
+              </g>
+              <!-- Review margin notes (right) -->
+              <g transform="translate(450,12)">
+                <path d="M0 26 L18 26" stroke="var(--coral)"/>
+                <circle cx="24" cy="26" r="3" fill="var(--coral)" stroke="none"/>
+                <text x="32" y="30" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">novelty       ●●●○○</text>
+                <path d="M0 50 L18 50" stroke="var(--coral)"/>
+                <circle cx="24" cy="50" r="3" fill="var(--coral)" stroke="none"/>
+                <text x="32" y="54" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">method        ●●●●○</text>
+                <path d="M0 74 L18 74" stroke="var(--coral)"/>
+                <circle cx="24" cy="74" r="3" fill="var(--coral)" stroke="none"/>
+                <text x="32" y="78" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">experiments   ●●●●●</text>
+                <path d="M0 98 L18 98" stroke="var(--coral)"/>
+                <circle cx="24" cy="98" r="3" fill="var(--coral)" stroke="none"/>
+                <text x="32" y="102" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">writing       ●●●○○</text>
+              </g>
+              <!-- Page corner clip -->
+              <g transform="translate(80,30)" stroke="currentColor" opacity="0.5">
+                <path d="M0 0 L20 0 L20 20"/><path d="M0 30 L20 30"/><path d="M0 50 L20 50"/><path d="M0 70 L20 70"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="p-7 md:p-10">
+          <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-2">
+            <h3 class="serif" style="font-size: clamp(26px, 3.4vw, 32px); font-weight: 500; color: var(--primary-ink); line-height: 1.15;">Reviewer's Desk</h3>
+          </div>
+          <p class="serif" style="font-style: italic; color: var(--ink-muted); font-size: 17px; margin-bottom: 18px;">
+            An AI-assisted research paper review tool for grad students and reviewers.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="chip chip--coral">AI / Research Tools</span>
+          </div>
+
+          <div class="space-y-4" style="font-size: 16px; color: var(--ink); max-width: 720px;">
+            <p>Reviewer's Desk parses a research paper PDF into structured sections — Abstract, Introduction, Method, Experiments, Limitations — and helps draft a peer review covering novelty, methodology, experimental rigor, figure citation hygiene, and writing quality. Every comment in the generated review is anchored to a specific section of the paper, with a clickable chip pointing back to the source.</p>
+            <p>The figure-audit feature is what makes it unique. It checks whether every figure and table caption in the PDF is actually cited in the main text — a common oversight that authors miss and reviewers often miss too. I caught a missing Figure 4 citation in my brother's pre-submission draft using this exact tool.</p>
+            <p>Four output modes: Conference (NeurIPS / CVPR / ICML style), Journal (TPAMI / Nature style), Course PR (for graduate seminar reviews), and Self-Review (for authors auditing their own drafts before submission).</p>
+          </div>
+
+          <div class="mt-7">
+            <div class="eyebrow mb-3">What I built</div>
+            <ul class="space-y-2" style="font-size: 15.5px; color: var(--ink);">
+              <li class="flex gap-3"><span style="color: var(--coral); flex-shrink: 0;">→</span>PDF section detection via font-size heuristics + numbered-heading regex</li>
+              <li class="flex gap-3"><span style="color: var(--coral); flex-shrink: 0;">→</span>Figure / table caption extraction and citation cross-reference</li>
+              <li class="flex gap-3"><span style="color: var(--coral); flex-shrink: 0;">→</span>Five-dimension review scoring (Novelty · Method Clarity · Experimental Strength · Reproducibility · Writing Quality)</li>
+              <li class="flex gap-3"><span style="color: var(--coral); flex-shrink: 0;">→</span>Structured reviewer-form output exportable to OpenReview Markdown</li>
+              <li class="flex gap-3"><span style="color: var(--coral); flex-shrink: 0;">→</span>System prompt with explicit "do not invent" rules</li>
+            </ul>
+          </div>
+
+          <div class="mt-7">
+            <div class="eyebrow mb-3">Tech stack</div>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">React</span><span class="chip">Tailwind</span><span class="chip">pdf.js</span>
+              <span class="chip">Gemini API</span><span class="chip">Custom prompt engineering</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 pt-6" style="border-top: 1px solid var(--rule);">
+            <a href="https://reviewer-desk.vercel.app" target="_blank" rel="noopener" class="mono" style="font-size: 13px; color: var(--coral);">View live demo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== Project 02: NagarSetu ========== -->
+      <article class="project-card fade-up pcard-navy" data-category="civic">
+        <div class="pvisual">
+          <div class="pvisual-meta">
+            <span class="pvisual-num">02 / 03</span>
+            <span class="pvisual-cat">Civic Tech · India</span>
+          </div>
+          <div class="pvisual-art">
+            <svg viewBox="0 0 720 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-muted);">
+              <!-- City street grid -->
+              <g transform="translate(60,10)">
+                <line x1="0" y1="33" x2="160" y2="33" stroke="currentColor" opacity="0.3"/>
+                <line x1="0" y1="66" x2="160" y2="66" stroke="currentColor" opacity="0.3"/>
+                <line x1="0" y1="99" x2="160" y2="99" stroke="currentColor" opacity="0.3"/>
+                <line x1="40" y1="0" x2="40" y2="108" stroke="currentColor" opacity="0.3"/>
+                <line x1="80" y1="0" x2="80" y2="108" stroke="currentColor" opacity="0.3"/>
+                <line x1="120" y1="0" x2="120" y2="108" stroke="currentColor" opacity="0.3"/>
+                <!-- Pothole pin (coral = reported) -->
+                <path d="M60 28 C60 14 48 14 48 2 a12 12 0 1 1 24 0 C72 14 60 14 60 28Z" fill="var(--coral)" stroke="none"/>
+                <circle cx="60" cy="2" r="4" fill="white" stroke="none" opacity="0.9"/>
+                <text x="65" y="22" font-family="JetBrains Mono" font-size="6" fill="var(--coral)" stroke="none">reported</text>
+                <!-- Resolved pin (mint) -->
+                <path d="M100 62 C100 52 91 52 91 43 a9 9 0 1 1 18 0 C109 52 100 52 100 62Z" fill="var(--mint)" stroke="none" opacity="0.85"/>
+                <text x="105" y="58" font-family="JetBrains Mono" font-size="6" fill="var(--mint)" stroke="none">resolved</text>
+                <!-- In-progress pin (amber) -->
+                <path d="M30 82 C30 72 21 72 21 63 a9 9 0 1 1 18 0 C39 72 30 72 30 82Z" fill="var(--amber)" stroke="none" opacity="0.85"/>
+                <text x="35" y="78" font-family="JetBrains Mono" font-size="6" fill="var(--amber)" stroke="none">in-progress</text>
+              </g>
+              <!-- Auto-route arrow -->
+              <path d="M240 55 H360" stroke="currentColor" stroke-dasharray="4 3" opacity="0.4"/>
+              <path d="M352 51l8 4-8 4" stroke="currentColor" opacity="0.6"/>
+              <text x="255" y="46" font-family="JetBrains Mono" font-size="7" fill="var(--ink-faint)" stroke="none">AUTO-ROUTE</text>
+              <!-- Department cards -->
+              <g transform="translate(376,8)">
+                <rect x="0" y="0" width="172" height="28" rx="4" stroke="var(--primary-ink)" fill="none"/>
+                <circle cx="14" cy="14" r="5" stroke="var(--primary-ink)" opacity="0.7"/>
+                <text x="24" y="11" font-family="JetBrains Mono" font-size="7" fill="var(--ink-muted)" stroke="none">Roads &amp; Infrastructure</text>
+                <text x="24" y="21" font-family="JetBrains Mono" font-size="6" fill="var(--primary-ink)" stroke="none">Ward 7 · Dept. PWD</text>
+                <rect x="0" y="36" width="172" height="28" rx="4" stroke="currentColor" fill="none" opacity="0.45"/>
+                <circle cx="14" cy="50" r="5" stroke="currentColor" opacity="0.4"/>
+                <text x="24" y="47" font-family="JetBrains Mono" font-size="7" fill="var(--ink-faint)" stroke="none">Water Supply</text>
+                <text x="24" y="57" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">Ward 7 · Jal Nigam</text>
+                <rect x="0" y="72" width="172" height="28" rx="4" stroke="currentColor" fill="none" opacity="0.45"/>
+                <circle cx="14" cy="86" r="5" stroke="currentColor" opacity="0.4"/>
+                <text x="24" y="83" font-family="JetBrains Mono" font-size="7" fill="var(--ink-faint)" stroke="none">Sanitation</text>
+                <text x="24" y="93" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">Ward 7 · Swachh Bharat</text>
+              </g>
+              <!-- Upvotes badge -->
+              <g transform="translate(572,28)">
+                <rect x="0" y="0" width="108" height="64" rx="6" stroke="currentColor"/>
+                <text x="54" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none" letter-spacing="0.8">UPVOTES</text>
+                <text x="54" y="44" text-anchor="middle" font-family="Fraunces" font-size="26" fill="var(--coral)" stroke="none">347</text>
+                <text x="54" y="58" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="var(--ink-muted)" stroke="none">neighbors agree</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="p-7 md:p-10">
+          <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-2">
+            <h3 class="serif" style="font-size: clamp(26px, 3.4vw, 32px); font-weight: 500; color: var(--primary-ink); line-height: 1.15;">NagarSetu</h3>
+          </div>
+          <p class="serif" style="font-style: italic; color: var(--ink-muted); font-size: 17px; margin-bottom: 18px;">
+            The bridge between citizens and city — civic accountability for small-town India.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="chip chip--navy">Civic Tech</span>
+          </div>
+
+          <div class="space-y-4" style="font-size: 16px; color: var(--ink); max-width: 720px;">
+            <p>NagarSetu lets you photograph a civic issue — a pothole, a broken streetlight, garbage overflow — and auto-routes it to the right municipal department based on issue type and location. The complaint lands on a public accountability map where your neighbors can see it, upvote it, and add supporting evidence. The council can't quietly bury it.</p>
+            <p>The problem it tackles is specific: in small-town India, civic complaints vanish into WhatsApp groups, are mislabeled or rerouted manually, and die without acknowledgment. NagarSetu makes the complaint public the moment it's submitted — creating social pressure alongside the bureaucratic trail.</p>
+            <p>Designed for first-time smartphone users: the issue type is auto-detected from the photo, so submission takes under 30 seconds. Tested with grandmothers, as the tagline says.</p>
+          </div>
+
+          <div class="mt-7">
+            <div class="eyebrow mb-3">What I built</div>
+            <ul class="space-y-2" style="font-size: 15.5px; color: var(--ink);">
+              <li class="flex gap-3"><span style="color: var(--primary-ink); flex-shrink: 0;">→</span>AI-powered issue-type detection from photographs</li>
+              <li class="flex gap-3"><span style="color: var(--primary-ink); flex-shrink: 0;">→</span>Auto-routing to the correct municipal department by ward</li>
+              <li class="flex gap-3"><span style="color: var(--primary-ink); flex-shrink: 0;">→</span>Public accountability map with real-time status pins</li>
+              <li class="flex gap-3"><span style="color: var(--primary-ink); flex-shrink: 0;">→</span>Upvote and supporting-evidence system for neighbors</li>
+              <li class="flex gap-3"><span style="color: var(--primary-ink); flex-shrink: 0;">→</span>Under-30-second submission flow for low-tech users</li>
+            </ul>
+          </div>
+
+          <div class="mt-7">
+            <div class="eyebrow mb-3">Tech stack</div>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">React</span><span class="chip">Tailwind</span>
+              <span class="chip">Geolocation API</span><span class="chip">AI image classification</span>
+              <span class="chip">Interactive map</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 pt-6" style="border-top: 1px solid var(--rule);">
+            <a href="https://nagar-setu-three.vercel.app" target="_blank" rel="noopener" class="mono" style="font-size: 13px; color: var(--coral);">View live demo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== Project 03: Paisa ========== -->
+      <article class="project-card fade-up pcard-amber" data-category="finance">
+        <div class="pvisual">
+          <div class="pvisual-meta">
+            <span class="pvisual-num">03 / 03</span>
+            <span class="pvisual-cat">Finance · Student Life</span>
+          </div>
+          <div class="pvisual-art">
+            <svg viewBox="0 0 720 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-muted);">
+              <!-- Phone frame -->
+              <g transform="translate(90,5)">
+                <rect x="0" y="0" width="124" height="110" rx="8" stroke="currentColor"/>
+                <text x="10" y="17" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none" letter-spacing="0.4">REMAINING THIS MONTH</text>
+                <rect x="10" y="22" width="104" height="6" rx="3" stroke="currentColor" fill="none" opacity="0.35"/>
+                <rect x="10" y="22" width="64" height="6" rx="3" fill="var(--amber)" stroke="none" opacity="0.85"/>
+                <text x="10" y="38" font-family="Fraunces" font-size="13" fill="var(--amber)" stroke="none">₹3,309</text>
+                <line x1="10" y1="46" x2="114" y2="46" stroke="currentColor" opacity="0.2"/>
+                <text x="10" y="58" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">Mess fee</text>
+                <text x="80" y="58" font-family="JetBrains Mono" font-size="6" fill="var(--ink-muted)" stroke="none">₹1,800</text>
+                <text x="10" y="70" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">Chai &amp; Maggi</text>
+                <text x="80" y="70" font-family="JetBrains Mono" font-size="6" fill="var(--coral)" stroke="none">₹2,100</text>
+                <text x="10" y="82" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">Mom transfer</text>
+                <text x="80" y="82" font-family="JetBrains Mono" font-size="6" fill="var(--mint)" stroke="none">+₹5,000</text>
+                <text x="10" y="94" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">Hostel rent</text>
+                <text x="80" y="94" font-family="JetBrains Mono" font-size="6" fill="var(--ink-muted)" stroke="none">₹3,500</text>
+                <text x="10" y="106" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">Roommate split</text>
+                <text x="80" y="106" font-family="JetBrains Mono" font-size="6" fill="var(--amber)" stroke="none">₹475</text>
+              </g>
+              <!-- Flow arrow -->
+              <path d="M228 60 H300" stroke="currentColor" stroke-dasharray="4 3" opacity="0.4"/>
+              <path d="M292 56l8 4-8 4" stroke="currentColor" opacity="0.6"/>
+              <!-- Voice input bubble -->
+              <g transform="translate(308,24)">
+                <rect x="0" y="0" width="148" height="30" rx="15" stroke="currentColor" opacity="0.55" fill="none"/>
+                <circle cx="18" cy="15" r="6" stroke="var(--amber)" opacity="0.85"/>
+                <path d="M15 12v6 M18 11v8 M21 12v6" stroke="var(--amber)" stroke-width="1.2"/>
+                <text x="32" y="12" font-family="JetBrains Mono" font-size="6.5" fill="var(--ink-muted)" stroke="none">"₹35 chai ke liye</text>
+                <text x="32" y="23" font-family="JetBrains Mono" font-size="6.5" fill="var(--ink-muted)" stroke="none">canteen waale ko diye"</text>
+              </g>
+              <!-- Auto-tagged result -->
+              <g transform="translate(308,66)">
+                <rect x="0" y="0" width="148" height="26" rx="4" stroke="var(--amber)" fill="none" opacity="0.75"/>
+                <text x="10" y="11" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none">auto-tagged:</text>
+                <text x="10" y="22" font-family="JetBrains Mono" font-size="7" fill="var(--amber)" stroke="none">Food · ₹35 · today 14:32</text>
+              </g>
+              <!-- UPI badge -->
+              <g transform="translate(484,22)">
+                <rect x="0" y="0" width="180" height="76" rx="8" stroke="currentColor"/>
+                <text x="90" y="18" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="var(--ink-faint)" stroke="none" letter-spacing="0.8">UPI-AWARE</text>
+                <text x="90" y="38" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="var(--ink-muted)" stroke="none">@paytm · @gpay</text>
+                <text x="90" y="52" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="var(--ink-muted)" stroke="none">@phonepe detected</text>
+                <text x="90" y="68" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="var(--amber)" stroke="none">auto-imported</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="p-7 md:p-10">
+          <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-2">
+            <h3 class="serif" style="font-size: clamp(26px, 3.4vw, 32px); font-weight: 500; color: var(--primary-ink); line-height: 1.15;">Paisa</h3>
+          </div>
+          <p class="serif" style="font-style: italic; color: var(--ink-muted); font-size: 17px; margin-bottom: 18px;">
+            Personal finance for Indian students — built for how you actually spend money.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="chip chip--amber">Finance</span>
+          </div>
+
+          <div class="space-y-4" style="font-size: 16px; color: var(--ink); max-width: 720px;">
+            <p>Paisa tracks your spending the way you actually live — voice input in Hindi or English, auto-categorized chai and Maggi, hostel rent from landlord, mess split with roommates, mom's monthly transfer separated from your income. Indian student finance is its own animal, and most budgeting apps are built for people who have salaries.</p>
+            <p>The core insight: you don't track ₹35 chai because it feels trivial. But ₹35 every day is ₹2,100 a month — which is exactly where the allowance disappears. Paisa catches this automatically. UPI transactions from PhonePe, GPay, and Paytm are detected and imported, so you don't have to log anything manually.</p>
+            <p>Budget anxiety is the other problem it solves. The day before refill you either check your balance with dread or don't check at all. Paisa gives you a clear "remaining this month" number so the 1st is never a surprise.</p>
+          </div>
+
+          <div class="mt-7">
+            <div class="eyebrow mb-3">What I built</div>
+            <ul class="space-y-2" style="font-size: 15.5px; color: var(--ink);">
+              <li class="flex gap-3"><span style="color: var(--amber); flex-shrink: 0;">→</span>Voice expense logging in Hindi and English</li>
+              <li class="flex gap-3"><span style="color: var(--amber); flex-shrink: 0;">→</span>UPI-aware auto-import from PhonePe, GPay, Paytm</li>
+              <li class="flex gap-3"><span style="color: var(--amber); flex-shrink: 0;">→</span>Smart categorization for student spend patterns (mess, chai, hostel, splits)</li>
+              <li class="flex gap-3"><span style="color: var(--amber); flex-shrink: 0;">→</span>Mom-transfer vs. income separation logic</li>
+              <li class="flex gap-3"><span style="color: var(--amber); flex-shrink: 0;">→</span>"Remaining this month" dashboard with budget gauge</li>
+            </ul>
+          </div>
+
+          <div class="mt-7">
+            <div class="eyebrow mb-3">Tech stack</div>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">React</span><span class="chip">Tailwind</span>
+              <span class="chip">Hindi/English NLP</span><span class="chip">UPI detection</span>
+              <span class="chip">Web Speech API</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 pt-6" style="border-top: 1px solid var(--rule);">
+            <a href="https://paisa-app-eta.vercel.app" target="_blank" rel="noopener" class="mono" style="font-size: 13px; color: var(--coral);">View live demo →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="container-narrow hairline-b"></div>
+
+<!-- ================= HIGHLIGHTS ================= -->
+<section id="highlights">
+  <div class="container-narrow">
+    <div class="fade-up mb-12">
+      <div class="chapter"><span class="chapter-num">§ 05</span><span class="chapter-rule"></span><span class="chapter-label">Highlights</span></div>
+      <h2 class="serif" style="font-weight: 500; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.12; letter-spacing: -0.005em; color: var(--primary-ink);">
+        Programs &amp; recognitions.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="fade-up p-7" style="background: var(--surface-warm); border: 1px solid var(--border); border-radius: 14px;">
+        <div style="color: var(--coral); margin-bottom: 14px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <h3 class="serif" style="font-size: 22px; font-weight: 500; color: var(--primary-ink); margin-bottom: 6px;">I-Global Course</h3>
+        <div style="font-weight: 500; color: var(--ink); margin-bottom: 10px;">University of Illinois Urbana-Champaign</div>
+        <p style="color: var(--ink-muted); font-size: 15px;">
+          International program exposing students to global perspectives on technology, communication, and cross-cultural collaboration.
+        </p>
+      </div>
+
+      <div class="fade-up p-7" style="background: var(--surface-warm); border: 1px solid var(--border); border-radius: 14px;">
+        <div style="color: var(--coral); margin-bottom: 14px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+        </div>
+        <h3 class="serif" style="font-size: 22px; font-weight: 500; color: var(--primary-ink); margin-bottom: 6px;">IIT Madras BS Data Science — Qualifier</h3>
+        <div style="font-weight: 500; color: var(--ink); margin-bottom: 10px;">Indian Institute of Technology, Madras</div>
+        <p style="color: var(--ink-muted); font-size: 15px;">
+          Successfully cleared the IIT Madras BS Data Science Qualifier Exam to enter the foundation level of the online degree program.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-narrow hairline-b"></div>
+
+<!-- ================= BEYOND CODE ================= -->
+<section id="beyond">
+  <div class="container-narrow">
+    <div class="fade-up mb-12">
+      <div class="chapter"><span class="chapter-num">§ 06</span><span class="chapter-rule"></span><span class="chapter-label">Beyond code</span></div>
+      <h2 class="serif" style="font-weight: 500; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.12; letter-spacing: -0.005em; color: var(--primary-ink);">
+        What I do when I'm not at a keyboard.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10">
+      <div class="fade-up">
+        <div class="eyebrow mb-5">Interests</div>
+        <ul class="space-y-4">
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="6" width="14" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 12h6M9 16h4"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Machine learning and applied data science</span></li>
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 22a9 9 0 1 1 0-18c5 0 8 3 8 7 0 2.5-2 3.5-4 3.5h-2c-1.5 0-2 1-2 2v3c0 1.5-1 2.5-2 2.5z"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Frontend design and UI craftsmanship</span></li>
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Continuous learning — courses, papers, side projects</span></li>
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Cross-cultural exchange and global tech communities</span></li>
+        </ul>
+      </div>
+
+      <div class="fade-up">
+        <div class="eyebrow mb-5">Activities</div>
+        <ul class="space-y-4">
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Active participation in academic and college-level events</span></li>
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Building independent projects across AI, healthcare, and dev-tools</span></li>
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Mentoring schoolmates in introductory programming and computer literacy</span></li>
+          <li class="flex gap-4 items-start"><span style="color: var(--coral); flex-shrink:0; margin-top:3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span class="serif" style="font-style: italic; font-size: 17px; color: var(--ink);">Self-taught frontend development outside the BCA curriculum</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-narrow hairline-b"></div>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="container-narrow">
+    <div class="fade-up mb-12">
+      <div class="chapter"><span class="chapter-num">§ 07</span><span class="chapter-rule"></span><span class="chapter-label">Contact</span></div>
+      <h2 class="serif" style="font-weight: 500; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.12; letter-spacing: -0.005em; color: var(--primary-ink);">
+        Want to work together — or just chat?
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-8 fade-up">
+      <div class="md:pr-8" style="border-right: 1px solid var(--rule);">
+        <div class="mb-3" style="color: var(--coral);">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="eyebrow mb-2">Email</div>
+        <a href="mailto:shreyapws@gmail.com" class="serif" style="font-size: 19px; color: var(--primary-ink);">shreyapws@gmail.com</a>
+      </div>
+
+      <div class="md:px-8" style="border-right: 1px solid var(--rule);">
+        <div class="mb-3" style="color: var(--coral);">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="eyebrow mb-2">Phone</div>
+        <a href="tel:+917018917510" class="serif" style="font-size: 19px; color: var(--primary-ink);">+91 70189 17510</a>
+      </div>
+
+      <div class="md:pl-8">
+        <div class="mb-3" style="color: var(--coral);">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="eyebrow mb-2">Location</div>
+        <div class="serif" style="font-size: 19px; color: var(--primary-ink);">Indora, Kangra<br/><span style="color: var(--ink-muted); font-size: 16px;">Himachal Pradesh, India</span></div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-3 mt-10 fade-up" style="padding-top: 32px; border-top: 1px solid var(--rule);">
+      <a href="https://www.linkedin.com/" class="flex items-center gap-2" style="color: var(--ink); font-size: 14.5px;">
+        <svg class="icon" style="color: var(--coral);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <span class="eyebrow">LinkedIn</span>
+        <span class="serif" style="font-style: italic; color: var(--ink-muted);">Shreya Sharma</span>
+      </a>
+      <a href="https://github.com/" class="flex items-center gap-2" style="color: var(--ink); font-size: 14.5px;">
+        <svg class="icon" style="color: var(--coral);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <span class="eyebrow">GitHub</span>
+        <span class="serif" style="font-style: italic; color: var(--ink-muted);">add your handle</span>
+      </a>
+      <a href="mailto:shreyapws@gmail.com" class="flex items-center gap-2" style="color: var(--ink); font-size: 14.5px;">
+        <svg class="icon" style="color: var(--coral);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="eyebrow">Email</span>
+        <span class="serif" style="font-style: italic; color: var(--ink-muted);">shreyapws@gmail.com</span>
+      </a>
+    </div>
+
+    <!-- Contact form -->
+    <form id="contact-form" class="card fade-up mt-14 mx-auto p-7 md:p-9" style="max-width: 540px;" onsubmit="return handleContactSubmit(event);">
+      <div class="eyebrow mb-2">Send a message</div>
+      <h3 class="serif mb-6" style="font-size: 22px; font-weight: 500; color: var(--primary-ink);">Say hello.</h3>
+
+      <div class="space-y-4">
+        <input class="field" type="text" name="name" placeholder="Your name" required />
+        <input class="field" type="email" name="email" placeholder="you@example.com" required />
+        <textarea class="field" name="message" placeholder="What would you like to say?" required></textarea>
+        <button class="btn btn-coral w-full justify-center" type="submit">
+          Send message
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="no-print" style="background: color-mix(in srgb, var(--bg) 80%, var(--bg-2) 20%); border-top: 1px solid var(--rule);">
+  <div class="container-narrow py-12">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pb-8" style="border-bottom: 1px solid var(--rule);">
+      <div>
+        <div class="serif flex items-center gap-2 mb-2" style="font-size: 20px; color: var(--primary-ink); font-weight: 500;">
+          <span class="inline-block w-[7px] h-[7px] rounded-full" style="background: var(--coral);"></span>
+          Shreya Sharma
+        </div>
+        <p class="serif" style="font-style: italic; color: var(--ink-muted); font-size: 14.5px;">
+          BCA · IIT Madras BS Data Science · Building things from Indora
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-x-6 gap-y-3 py-6" style="font-size: 13.5px; color: var(--ink-muted);">
+      <a href="#about" class="hover:text-[color:var(--coral)]">About</a>
+      <a href="#education" class="hover:text-[color:var(--coral)]">Education</a>
+      <a href="#skills" class="hover:text-[color:var(--coral)]">Skills</a>
+      <a href="#projects" class="hover:text-[color:var(--coral)]">Projects</a>
+      <a href="#highlights" class="hover:text-[color:var(--coral)]">Highlights</a>
+      <a href="#contact" class="hover:text-[color:var(--coral)]">Contact</a>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4" style="border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--ink-faint);">
+      <div class="mono">© 2026 Shreya Sharma · Indora, Kangra · India</div>
+      <div class="flex items-center gap-4" style="color: var(--ink-muted);">
+        <a href="https://www.linkedin.com/" aria-label="LinkedIn" class="hover:text-[color:var(--coral)]">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/" aria-label="GitHub" class="hover:text-[color:var(--coral)]">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="mailto:shreyapws@gmail.com" aria-label="Email" class="hover:text-[color:var(--coral)]">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast">✓ Thanks! I'll get back to you soon.</div>
+
+<!-- Command Palette -->
+<div id="cmdk-overlay" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div id="cmdk">
+    <input id="cmdk-input" type="text" placeholder="Type a section, project, or action…" autocomplete="off" />
+    <div id="cmdk-list"></div>
+    <div id="cmdk-footer">
+      <span><span class="kbd">↑</span><span class="kbd">↓</span> navigate</span>
+      <span><span class="kbd">↵</span> select</span>
+      <span><span class="kbd">esc</span> close</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== Theme toggle =====
+  const themeBtn = document.getElementById("theme-toggle");
+  themeBtn.addEventListener("click", () => {
+    const root = document.documentElement;
+    const isDark = root.classList.toggle("dark");
+    try { localStorage.setItem("ss-theme", isDark ? "dark" : "light"); } catch (e) {}
+  });
+
+  // ===== Mobile menu =====
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburger.addEventListener("click", () => mobileMenu.classList.toggle("open"));
+  document.querySelectorAll("[data-mobile]").forEach(a => {
+    a.addEventListener("click", () => mobileMenu.classList.remove("open"));
+  });
+
+  // ===== Scroll-fade in =====
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); fadeObs.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  document.querySelectorAll(".fade-up").forEach(el => fadeObs.observe(el));
+
+  // ===== Active nav highlight =====
+  const navMap = {
+    about: document.querySelector('[data-nav="about"]'),
+    education: document.querySelector('[data-nav="education"]'),
+    skills: document.querySelector('[data-nav="skills"]'),
+    projects: document.querySelector('[data-nav="projects"]'),
+    highlights: document.querySelector('[data-nav="highlights"]'),
+    contact: document.querySelector('[data-nav="contact"]'),
+  };
+  const sections = ["about", "education", "skills", "projects", "highlights", "contact"]
+    .map(id => document.getElementById(id));
+  const sectionObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        Object.values(navMap).forEach(n => n && n.classList.remove("active"));
+        const link = navMap[e.target.id];
+        if (link) link.classList.add("active");
+      }
+    });
+  }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+  sections.forEach(s => s && sectionObs.observe(s));
+
+  // ===== Reading progress =====
+  const progressBar = document.getElementById("read-progress");
+  function updateProgress() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? Math.min(100, (h.scrollTop / max) * 100) : 0;
+    progressBar.style.width = pct + "%";
+  }
+  document.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+
+  // ===== Project filters =====
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll("#project-list .project-card");
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const cat = btn.dataset.filter;
+      projectCards.forEach(card => {
+        const match = cat === "all" || card.dataset.category === cat;
+        card.dataset.hidden = match ? "false" : "true";
+      });
+    });
+  });
+
+  // ===== Command palette =====
+  const isMac = /Mac|iPhone|iPad/.test(navigator.platform);
+  const cmdkKey = document.getElementById("cmdk-key");
+  if (cmdkKey) cmdkKey.textContent = isMac ? "⌘" : "Ctrl";
+
+  const overlay = document.getElementById("cmdk-overlay");
+  const cmdkInput = document.getElementById("cmdk-input");
+  const cmdkList = document.getElementById("cmdk-list");
+
+  const cmdkItems = [
+    { group: "Navigate", label: "About", target: "#about", icon: "M12 2v20M2 12h20" },
+    { group: "Navigate", label: "Education", target: "#education", icon: "M22 10L12 5 2 10l10 5 10-5z" },
+    { group: "Navigate", label: "Skills", target: "#skills", icon: "M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" },
+    { group: "Navigate", label: "Projects", target: "#projects", icon: "M3 7h18M3 12h18M3 17h12" },
+    { group: "Navigate", label: "Highlights", target: "#highlights", icon: "M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" },
+    { group: "Navigate", label: "Contact", target: "#contact", icon: "M4 4h16v16H4zM4 4l8 8 8-8" },
+    { group: "Projects", label: "01 — EduRAG", target: "#projects", icon: "M4 4h7v16H4zM13 4h7v16h-7z" },
+    { group: "Projects", label: "02 — Reviewer's Desk", target: "#projects", icon: "M6 3h9l4 4v14H6z" },
+    { group: "Projects", label: "03 — CodeCompass", target: "#projects", icon: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" },
+    { group: "Projects", label: "04 — Kavach", target: "#projects", icon: "M12 3l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" },
+    { group: "Projects", label: "05 — Slott", target: "#projects", icon: "M12 7v5l3 2" },
+    { group: "Projects", label: "06 — Cortex", target: "#projects", icon: "M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0" },
+    { group: "Actions", label: "Toggle dark mode", action: "theme", icon: "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" },
+    { group: "Actions", label: "Email me", target: "mailto:shreyapws@gmail.com", icon: "M4 4h16v16H4zM4 4l8 8 8-8" },
+    { group: "Actions", label: "Open LinkedIn", target: "https://www.linkedin.com/", external: true, icon: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" },
+    { group: "Actions", label: "Open GitHub", target: "https://github.com/", external: true, icon: "M9 19c-5 1.5-5-2.5-7-3" },
+    { group: "Actions", label: "Download résumé", target: "./Shreya_Sharma_CV.pdf", icon: "M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" },
+  ];
+
+  let cmdkActive = 0;
+  let cmdkFiltered = cmdkItems.slice();
+
+  function renderCmdkList() {
+    cmdkList.innerHTML = "";
+    let currentGroup = null;
+    cmdkFiltered.forEach((item, idx) => {
+      if (item.group !== currentGroup) {
+        currentGroup = item.group;
+        const g = document.createElement("div");
+        g.className = "cmdk-group-title";
+        g.textContent = currentGroup;
+        cmdkList.appendChild(g);
+      }
+      const el = document.createElement("div");
+      el.className = "cmdk-item" + (idx === cmdkActive ? " active" : "");
+      el.dataset.idx = idx;
+      el.innerHTML = `
+        <svg class="cmdk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${item.icon}"/></svg>
+        <span>${item.label}</span>
+        ${item.external ? '<span class="cmdk-shortcut">↗</span>' : ''}
+      `;
+      el.addEventListener("click", () => runCmdk(item));
+      el.addEventListener("mouseenter", () => { cmdkActive = idx; refreshActive(); });
+      cmdkList.appendChild(el);
+    });
+  }
+  function refreshActive() {
+    cmdkList.querySelectorAll(".cmdk-item").forEach((el, i) => {
+      el.classList.toggle("active", parseInt(el.dataset.idx, 10) === cmdkActive);
+    });
+  }
+  function runCmdk(item) {
+    closeCmdk();
+    if (item.action === "theme") { themeBtn.click(); return; }
+    if (item.external) { window.open(item.target, "_blank", "noopener"); return; }
+    if (item.target.startsWith("#")) {
+      const el = document.querySelector(item.target);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = item.target;
+    }
+  }
+  function openCmdk() {
+    overlay.classList.add("open");
+    cmdkInput.value = "";
+    cmdkActive = 0;
+    cmdkFiltered = cmdkItems.slice();
+    renderCmdkList();
+    setTimeout(() => cmdkInput.focus(), 50);
+  }
+  function closeCmdk() {
+    overlay.classList.remove("open");
+  }
+  cmdkInput.addEventListener("input", () => {
+    const q = cmdkInput.value.toLowerCase().trim();
+    cmdkFiltered = q
+      ? cmdkItems.filter(i => i.label.toLowerCase().includes(q) || i.group.toLowerCase().includes(q))
+      : cmdkItems.slice();
+    cmdkActive = 0;
+    renderCmdkList();
+  });
+  cmdkInput.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); cmdkActive = Math.min(cmdkFiltered.length - 1, cmdkActive + 1); refreshActive(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); cmdkActive = Math.max(0, cmdkActive - 1); refreshActive(); }
+    else if (e.key === "Enter") { e.preventDefault(); if (cmdkFiltered[cmdkActive]) runCmdk(cmdkFiltered[cmdkActive]); }
+    else if (e.key === "Escape") { e.preventDefault(); closeCmdk(); }
+  });
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeCmdk(); });
+  document.getElementById("cmdk-trigger")?.addEventListener("click", openCmdk);
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      overlay.classList.contains("open") ? closeCmdk() : openCmdk();
+    }
+  });
+
+  // ===== Contact form =====
+  function handleContactSubmit(e) {
+    e.preventDefault();
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+    e.target.reset();
+    setTimeout(() => toast.classList.remove("show"), 2800);
+    return false;
+  }
+</script>
+
+</body>
+</html>
